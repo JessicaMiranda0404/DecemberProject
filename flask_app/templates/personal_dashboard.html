@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1 class="personaldash">Welcome <span>{{user.first_name}}</span> to your personal Dashboard!!!</h1>
+
+
+        <h4 class="text-center">Here is a list of your saved quotes</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title:</th>
+                    <th>Quote:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quote in quotes %}
+                <tr>
+                  
+                    {% if quote.user_id == session.user_id %}
+                    <tr>
+                        <td>{{ quote.title }}</td>
+                        <td>{{ quote.quote }}</td>
+                        <td> 
+                        <a href="/edit/quote/{{quote.id}}">Edit</a>
+                        <a href="/destroy/quote/{{quote.id}}">Delete</a>
+                        <a href="/add/favorite/{{quote.id}}"> Favorite</a>
+                    {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+        <div class="personal">
+                <a href="/new/quote" class="btn btn-info">Add a new quote</a>
+                <a href="/add/favorite" class="btn btn-info">Add a favorite</a>
+                <a href="/quotes" class="btn btn-info">View your personal collection</a>
+                <a href="/dashboard" class="btn btn-info">Dashboard</a>
+                <a href="/logout" class="btn btn-info">Logout</a>
+        </div>
+</body>
+</html>

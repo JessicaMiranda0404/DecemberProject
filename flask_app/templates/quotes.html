@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show personal collection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1>Quotes added by {{user.first_name}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+            </div>
+            </nav>
+
+    <h1 class="text-center">The full collection of quotes!!!</h1>
+
+
+    <h1 class="text-center">{{quote.title}} by {{user.first_name}}!!!</h1>
+    <div class="card col-10 mx-auto my-5 bg-dark text-light">
+        <div class="card-body">
+            <p class="card-text">quote: {{quote.title}}</p>
+            <p class="card-text">When: {{quote.quote}}</p>
+        </div>
+    </div>
+
+        <div class="card col-10 mx-auto my-5 bg-light text-dark">
+            <div class="card-body">
+            </div>
+            <h1>Manage my Quotes</h1>
+            {% for quotes in quotes %}
+            <a href="/quote/{{quotes.id}}">Details</a>
+            {% if quote.user_id == session.user_id%}
+            <h4>{{quote.title}}</h4>
+
+            {% for quotes in quotes %}
+            <h4>{{quote.title}}</h4>
+            <p>{{quote.quote}}</p>
+            {% endfor %}
+         
+            <a href="/edit/quote/{{quotes.id}}">Edit</a>
+            <a href="/destroy/quote/{{quotes.id}}">Delete</a>
+            {% endif %}
+            {% endfor %}
+            </div>
+
+
+    </body>
+    </html>

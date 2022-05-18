@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Quote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="editheading">Welcome <span>{{user.first_name}}!!!</h1>
+        
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-editdash">Dashboard</a>
+        </div>
+    </nav>
+    <form action="/update/quote" method="post" class="col-11 p-4 my-4 bg-light text-dark mx-auto">
+        <h2 class="text-primary"><span>Edit quote</span></h2>
+        {% with messages = get_flashed_messages(category_filter=['quote']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Flash AHHHHHHH!!!!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="d-flex justify-content-between col-9">
+            <input type="hidden" name="id" value={{quote.id}}>
+            
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" class="form-control" value="{{quote.title}}">
+                </div>
+                <div class="form-group">
+                    <label for="quote">Description:</label>
+                    <textarea name="quote"  cols="30" rows="5" class="form-control">{{quote.quote}}</textarea>
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Update quote" class="btn-update">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

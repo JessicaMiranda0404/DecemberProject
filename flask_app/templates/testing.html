@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center">Welcome {{user.first_name}}!!!</h1>
+    <a href="/logout" class="btn btn-info">Logout</a>
+
+    <h1 class="text-center">Here is the full collection of quotes from all users!!!</h1>
+        <div class="card col-10 mx-auto my-5 bg-light text-dark">
+            <div class="card-body">   
+            <table>
+                <thead>
+                    <tr>Title:</tr>
+                    <tr> Quote:</tr>
+                </thead>
+            <tbody>
+                {% for quote in quotes %}
+
+                    <td>{{quote.title}}</td>
+                    <td>{{quote.quote}}</td>
+                    <td> 
+                        {% if quote.user_id == session.user_id %}
+                            <a href="/edit/quote/{{quote.id}}">Edit</a>
+                            <a href="/destroy/quote/{{quote.id}}">Delete</a>
+                        {% endif %}</td>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Dashboard</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        </head>
+        <body>
+            <h1 class="text-center">Welcome {{user.first_name}}!!!</h1>
+            <a href="/logout" class="btn btn-info">Logout</a>
+        
+            <h1 class="text-center">Here is the full collection of quotes from all users!!!</h1>
+                <div class="card col-10 mx-auto my-5 bg-light text-dark">
+                    <div class="card-body">   
+                    <table>
+                        <thead>
+                            <tr>Title:</tr>
+                            <tr> Quote:</tr>
+                        </thead>
+                    <tbody>
+                        {% for quote in quotes %}
+        
+                            <td>{{quote.title}}</td>
+                            <td>{{quote.quote}}</td>
+                            <td> 
+                                {% if quote.user_id == session.user_id %}
+                                    <a href="/edit/quote/{{quote.id}}">Edit</a>
+                                    <a href="/destroy/quote/{{quote.id}}">Delete</a>
+                                {% endif %}</td>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+                        <a href="/new/quote" class="btn btn-primary">Add a new quote</a>
+                </div>
+                        <a href="/personal/collection" class="btn btn-primary">View your personal collection</a>
+        </body>
+        </html>
+
+
+
+
+
+
+                <a href="/new/quote" class="btn btn-primary">Add a new quote</a>
+        </div>
+                <a href="/personal/collection" class="btn btn-primary">View your personal collection</a>
+</body>
+</html>
